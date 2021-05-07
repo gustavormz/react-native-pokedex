@@ -8,8 +8,17 @@ import {
 } from '@react-navigation/stack';
 
 import SplashscreenView from './views/splashscreen';
+import HomeView from './views/home';
 
 const Stack = createStackNavigator();
+
+const HomeStackNavigator = () => (
+	<Stack.Navigator>
+		<Stack.Screen
+			name={"Home"}
+			component={HomeView}/>
+	</Stack.Navigator>
+);
 
 const App = () => (
 	<NavigationContainer>
@@ -20,6 +29,9 @@ const App = () => (
 			<Stack.Screen
 				name={"Splashscreen"}
 				component={SplashscreenView}/>
+			<Stack.Screen
+				name={"HomeStack"}
+				component={HomeStackNavigator}/>
 		</Stack.Navigator>
 	</NavigationContainer>
 );
