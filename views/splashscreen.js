@@ -10,12 +10,12 @@ import {
 import Logo from '../components/icon/logo';
 
 const SplashscreenView = ({
-    timeoutTime
+    timeoutTime,
+    navigation
 }) => {
     useEffect(() => {
-        console.log(timeoutTime);
         const timeoutReference = setTimeout(() => {
-            // TODO: add navigation to home
+            navigation.replace('HomeStack');
         }, timeoutTime);
 
         return () => clearTimeout(timeoutReference);
