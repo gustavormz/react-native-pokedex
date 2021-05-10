@@ -18,11 +18,12 @@ const CardPokemonType = ({
 }) => (
     <Surface style={styles.container}>
         <FlatList
+            testID={`flatlist-types`}
             data={types}
             horizontal={true}
             keyExtractor={typeKeyExtrator}
-            renderItem={({ item }) => (
-                <View style={styles.itemContainer}>
+            renderItem={({ item }, index) => (
+                <View testID={`type-row-${index}`} style={styles.itemContainer}>
                     <ChipType type={item.type.name}/>
                 </View>
             )}/>

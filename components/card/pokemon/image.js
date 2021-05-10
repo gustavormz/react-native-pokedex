@@ -12,8 +12,9 @@ const CardPokemonImage = ({
     imageUri,
     avatarSize
 }) => (
-    <Surface style={styles.container}>
+    <Surface testID={`surface-container`} style={styles.container}>
         <Avatar.Image
+            testID={`image-avatar`}
             style={styles.avatar}
             size={avatarSize}
             source={{
