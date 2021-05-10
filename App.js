@@ -9,6 +9,7 @@ import {
 
 import SplashscreenView from './views/splashscreen';
 import HomeView from './views/home';
+import DetailView from './views/detail';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,9 @@ const HomeStackNavigator = () => (
 		<Stack.Screen
 			name={"Home"}
 			component={HomeView}/>
+		<Stack.Screen
+			name={`Detail`}
+			component={DetailView}/>
 	</Stack.Navigator>
 );
 
