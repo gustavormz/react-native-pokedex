@@ -5,9 +5,11 @@ import {
 import PropTypes from 'prop-types';
 
 const Logo = ({
-	xml
+	xml,
+	...props
 }) => (
 	<SvgXml
+		{ ...props }
 		xml={xml}
 		width={`100%`}
 		height={`100%`}/>
