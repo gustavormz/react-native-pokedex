@@ -9,15 +9,19 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-import API from '../lib/api';
+import {
+    pokemonApi
+} from '../lib/api';
 
 import CardPokemonBase from '../components/card/pokemon/base';
 
 const pokemonsListKeyExtrator = (item, index) => index;
 
 const HomeView = ({
-    limit,
-    initialNumToRender
+    initialNumToRender,
+    navigation,
+    numColumns,
+    endReachThreshold
 }) => {
     const [state, setState] = useState({
         isRequesting: false,
@@ -26,20 +30,28 @@ const HomeView = ({
     const [pokemons, setPokemons] = useState([]);
 
     useEffect(() => {
-        const fetchPokemons = async () => {
-            const apiResponse = await API.call(`/pokemon?offset=${state.page * limit}&limit=${limit}`);
-            const newPokemons = [...pokemons, ...apiResponse.results];
-            setPokemons(newPokemons);
+        const fetchPokemons = () => {
+            pokemonApi.getAllByPagination(state.page)
+                .then(pokemonsArray => [...pokemons, ...pokemonsArray])
+                .then(pokemonsResult => {
+                    setPokemons(pokemonsResult)
+                })
+                .catch(error => console.error(error));
         }
 
         fetchPokemons();
     }, [state.page]);
 
     const handleFlatListEnd = () => {
-        const nextPage = state.page + 1;
         setState({
             ...state,
-            page: nextPage
+            page: state.page + 1
+        });
+    };
+
+    const handleCardPokemonClick = (id) => {
+        navigation.navigate(`Detail`, {
+            id
         });
     };
 
@@ -48,10 +60,10 @@ const HomeView = ({
             <FlatList
                 data={pokemons}
                 keyExtractor={pokemonsListKeyExtrator}
-                renderItem={({ item }) => <CardPokemonBase {...item}/>}
-                numColumns={2}
+                renderItem={({ item }) => <CardPokemonBase {...item} handleClick={handleCardPokemonClick}/>}
+                numColumns={numColumns}
                 onEndReached={handleFlatListEnd}
-                onEndReachedThreshold={0.5}
+                onEndReachedThreshold={endReachThreshold}
                 initialNumToRender={initialNumToRender}/>
         </View>
     );
@@ -64,13 +76,15 @@ const styles = StyleSheet.create({
 });
 
 HomeView.propTypes = {
-    limit: PropTypes.number,
-    initialNumToRender: PropTypes.number
+    initialNumToRender: PropTypes.number,
+    numColumns: PropTypes.number,
+    endReachThreshold: PropTypes.number
 };
 
 HomeView.defaultProps = {
-    limit: 20,
-    initialNumToRender: 10
+    initialNumToRender: 10,
+    numColumns: 2,
+    endReachThreshold: 0.5
 };
 
 export default HomeView;

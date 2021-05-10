@@ -1,9 +1,5 @@
-import React, {
-    useEffect,
-    useState
-} from 'react';
+import React from 'react';
 import {
-    View,
     StyleSheet,
     Image
 } from 'react-native';
@@ -13,34 +9,29 @@ import {
     Title
 } from 'react-native-paper';
 
-import API from '../../../lib/api';
-
 const PokemonCardBase = ({
     name,
-    url
-}) => {
-    const urlSplitBySlash = url.split('/');
-    urlSplitBySlash.pop();
-    const id = urlSplitBySlash.pop();
-    const imageUri = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
-
-    return (
-        <Card style={styles.container}>
-            <Card.Content style={styles.content}>
-                <Image
-                    style={styles.image}
-                    source={{
-                        uri: imageUri
-                    }}/>
-            </Card.Content>
-            <Card.Actions style={styles.actions}>
-                <Title>
-                    {name}
-                </Title>
-            </Card.Actions>
-        </Card>
-    );
-}
+    id,
+    handleClick,
+    imageUri
+}) => (
+    <Card
+        onPress={() => handleClick(id)}
+        style={styles.container}>
+        <Card.Content style={styles.content}>
+            <Image
+                style={styles.image}
+                source={{
+                    uri: imageUri
+                }}/>
+        </Card.Content>
+        <Card.Actions style={styles.actions}>
+            <Title>
+                {name}
+            </Title>
+        </Card.Actions>
+    </Card>
+);
 
 const styles = StyleSheet.create({
     container: {
@@ -62,7 +53,10 @@ const styles = StyleSheet.create({
 
 PokemonCardBase.propTypes = {
     name: PropTypes.string,
-    url: PropTypes.string
+    id: PropTypes.string,
+    baseImageUri: PropTypes.string,
+    handleClick: PropTypes.func,
+    imageUri: PropTypes.string
 };
 
 export default PokemonCardBase;
