@@ -24,7 +24,7 @@ const SplashscreenView = ({
     return (
         <View style={styles.container}>
             <View style={styles.logoContainer}>
-                <Logo />
+                <Logo testID={`logo`}/>
             </View>
         </View>
     );
