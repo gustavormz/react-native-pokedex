@@ -15,7 +15,7 @@ const SplashscreenView = ({
 }) => {
     useEffect(() => {
         const timeoutReference = setTimeout(() => {
-            navigation.replace('HomeStack');
+            navigation.replace('TabNavigator');
         }, timeoutTime);
 
         return () => clearTimeout(timeoutReference);
