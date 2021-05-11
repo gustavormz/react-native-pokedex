@@ -13,9 +13,11 @@ const PokemonCardBase = ({
     name,
     id,
     handleClick,
-    imageUri
+    imageUri,
+    ...props
 }) => (
     <Card
+        { ...props }
         onPress={() => handleClick(id)}
         style={styles.container}>
         <Card.Content style={styles.content}>
