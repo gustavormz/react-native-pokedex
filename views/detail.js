@@ -24,6 +24,7 @@ import CardPokemonEvolution from '../components/card/pokemon/evolution';
 import CardPokemonTypes from '../components/card/pokemon/type';
 import CardPokemonAbilities from '../components/card/pokemon/abilities';
 import CardPokemonMoves from '../components/card/pokemon/moves';
+import LoaderBase from '../components/loader/base';
 
 const getStatName = ({ ability }) => ability.name;
 
@@ -78,6 +79,9 @@ const DetailView = ({
         moves: [],
         abilities: [],
     });
+    const [state, setState] = useState({
+        isRequesting: true
+    });
     
     useEffect(() => {
         let isSetInformation = true;
@@ -125,6 +129,15 @@ const DetailView = ({
                     moves
                 });
             }
+        })
+        .catch(e => {
+            console.error(`error`, e);
+            navigation.navigate(`HomeStack`);
+        })
+        .finally(() => {
+            setState({
+                isRequesting: false
+            });
         });
         
         return () => isSetInformation = false;
@@ -133,6 +146,7 @@ const DetailView = ({
     return (
         <ScrollView
             style={styles.container}>
+            { state.isRequesting && (<LoaderBase />) }
             <CardPokemonImage
                 imageUri={pokemon.sprites['front_default']}/>
             <View style={styles.space}/>

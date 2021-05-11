@@ -14,6 +14,7 @@ import {
 } from '../lib/api';
 
 import CardPokemonBase from '../components/card/pokemon/base';
+import LoaderBase from '../components/loader/base';
 
 const pokemonsListKeyExtrator = (item, index) => index;
 
@@ -25,7 +26,7 @@ const HomeView = ({
     _pokemons
 }) => {
     const [state, setState] = useState({
-        isRequesting: false,
+        isRequesting: true,
         page: 0
     });
     const [pokemons, setPokemons] = useState([]);
@@ -37,7 +38,12 @@ const HomeView = ({
                 .then(pokemonsResult => {
                     setPokemons(pokemonsResult)
                 })
-                .catch(error => console.error(error));
+                .catch(error => console.error(error))
+                .finally(() => {
+                    setState({
+                        isRequesting: false
+                    });
+                });
         }
 
         fetchPokemons();
@@ -58,6 +64,7 @@ const HomeView = ({
 
     return (
         <View style={styles.container}>
+            { state.isRequesting && (<LoaderBase />) }
             <FlatList
                 testID={`flatlist-pokemons`}
                 data={_pokemons || pokemons}
