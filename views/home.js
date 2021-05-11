@@ -41,6 +41,7 @@ const HomeView = ({
                 .catch(error => console.error(error))
                 .finally(() => {
                     setState({
+                        ...state,
                         isRequesting: false
                     });
                 });
