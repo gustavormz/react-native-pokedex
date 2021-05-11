@@ -21,7 +21,8 @@ const HomeView = ({
     initialNumToRender,
     navigation,
     numColumns,
-    endReachThreshold
+    endReachThreshold,
+    _pokemons
 }) => {
     const [state, setState] = useState({
         isRequesting: false,
@@ -58,9 +59,10 @@ const HomeView = ({
     return (
         <View style={styles.container}>
             <FlatList
-                data={pokemons}
+                testID={`flatlist-pokemons`}
+                data={_pokemons || pokemons}
                 keyExtractor={pokemonsListKeyExtrator}
-                renderItem={({ item }) => <CardPokemonBase {...item} handleClick={handleCardPokemonClick}/>}
+                renderItem={({ item, index }) => <CardPokemonBase testID={`pokemon-row-${index}`} {...item} handleClick={handleCardPokemonClick}/>}
                 numColumns={numColumns}
                 onEndReached={handleFlatListEnd}
                 onEndReachedThreshold={endReachThreshold}
@@ -78,7 +80,8 @@ const styles = StyleSheet.create({
 HomeView.propTypes = {
     initialNumToRender: PropTypes.number,
     numColumns: PropTypes.number,
-    endReachThreshold: PropTypes.number
+    endReachThreshold: PropTypes.number,
+    _pokemons: PropTypes.array
 };
 
 HomeView.defaultProps = {
