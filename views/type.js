@@ -59,29 +59,6 @@ const TypeView = ({
         });
 
         return () => updateState = false;
-    }, []);
-
-    useEffect(() => {
-        let updateState = true;
-        setState({
-            ...state,
-            isRequesting: true
-        });
-        typeApi.getByType(type).then(pokemons => {
-            if (updateState) {
-                setPokemonsByType(pokemons);
-            }
-        }).catch((e) => {
-            console.error(e);
-            return [];
-        }).finally(() => {
-            setState({
-                ...state,
-                isRequesting: false
-            });
-        });
-
-        return () => updateState = false;
     }, [type]);
 
     const handleCardPokemonClick = (id) => {
@@ -95,6 +72,7 @@ const TypeView = ({
             { state.isRequesting && (<LoaderBase />) }
             <Surface style={styles.pickerContainer}>
                 <Picker
+                    testID={`picker-type`}
                     selectedValue={type}
                     onValueChange={setType}>
                     { types.map(type => (
