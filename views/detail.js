@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     container: {
         paddingVertical: 20,
         marginHorizontal: 10,
-        marginBottom: 20
+        marginBottom: 8
     },
     space: {
         marginVertical: 10

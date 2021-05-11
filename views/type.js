@@ -72,6 +72,9 @@ const TypeView = ({
             { state.isRequesting && (<LoaderBase />) }
             <Surface style={styles.pickerContainer}>
                 <Picker
+                    style={{
+                        color: `white`
+                    }}
                     testID={`picker-type`}
                     selectedValue={type}
                     onValueChange={setType}>
@@ -115,7 +118,9 @@ const styles = StyleSheet.create({
     },
     flatlistContainer: {
         flex: 10,
-        elevation: 2
+        elevation: 2,
+        backgroundColor: `white`,
+        marginTop: 8
     }
 });
 

@@ -10,9 +10,15 @@ import PropTypes from 'prop-types';
 
 const CardPokemonImage = ({
     imageUri,
-    avatarSize
+    avatarSize,
+    backgroundColor,
+    marginHorizontal
 }) => (
-    <Surface testID={`surface-container`} style={styles.container}>
+    <Surface testID={`surface-container`} style={{
+        ...styles.container,
+        backgroundColor: backgroundColor,
+        marginHorizontal: marginHorizontal
+    }}>
         <Avatar.Image
             testID={`image-avatar`}
             style={styles.avatar}
@@ -30,11 +36,9 @@ const styles = StyleSheet.create({
         display: `flex`,
         alignItems: `center`,
         elevation: 3,
-        borderRadius: 5,
-        backgroundColor: `green`
+        borderRadius: 5
     },
     avatar: {
-        backgroundColor: `white`
     }
 });
 
@@ -44,7 +48,9 @@ CardPokemonImage.propTypes = {
 };
 
 CardPokemonImage.defaultProps = {
-    avatarSize: 150
+    avatarSize: 150,
+    backgroundColor: `#175676`,
+    marginHorizontal: 0
 };
 
 export default CardPokemonImage;

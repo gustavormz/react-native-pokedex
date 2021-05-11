@@ -11,14 +11,14 @@ import {
 const LoaderBase = () => (
     <Portal>
         <View style={styles.container}>
-            <ActivityIndicator size={`large`} color="#0000ff" />
+            <ActivityIndicator size={`large`} color="#D62839" />
         </View>
     </Portal>
 );
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: `rgba(52, 52, 52, 0.8)`,
+        backgroundColor: `rgba(204, 230, 244, 0.8)`,
         height: `100%`,
         width: `100%`,
         margin: 0,

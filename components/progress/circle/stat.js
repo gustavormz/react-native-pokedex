@@ -4,6 +4,9 @@ import {
     Subheading
 } from 'react-native-paper';
 import PropTypes from 'prop-types';
+import {
+    StyleSheet
+} from 'react-native';
 
 const ProgressCircleStat = ({
     statValue,
@@ -20,11 +23,17 @@ const ProgressCircleStat = ({
         color={color}
         shadowColor={shadowColor}
         bgColor={bgColor}>
-        <Subheading>
+        <Subheading style={styles.statValue}>
             { statValue }
         </Subheading>
     </ProgressCircle>
 );
+
+const styles = StyleSheet.create({
+    statValue: {
+        color: `#D62839`
+    }
+});
 
 ProgressCircleStat.propTypes = {
     statValue: PropTypes.number,
@@ -38,9 +47,9 @@ ProgressCircleStat.propTypes = {
 ProgressCircleStat.defaultProps = {
     radius: 50,
     borderWidth: 8,
-    color: `red`,
-    shadowColor: `blue`,
-    bgColor: `green`
+    color: `#4BA3C3`,
+    shadowColor: `#CCE6F4`,
+    bgColor: `white`
 };
 
 export default ProgressCircleStat;

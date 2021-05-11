@@ -24,9 +24,10 @@ const CardPokemonAbilities = ({
             renderItem={({ item }) => (
                 <Card style={styles.itemContainer}>
                     <Card.Title
+                        titleStyle={styles.textTitle}
                         title={item.name}/>
                     <Card.Content>
-                        <Subheading>
+                        <Subheading style={styles.textSub}>
                             { item.effect }
                         </Subheading>
                     </Card.Content>
@@ -46,7 +47,13 @@ const styles = StyleSheet.create({
         marginHorizontal: 7,
         elevation: 1,
         marginVertical: 5,
-        backgroundColor: `blue`
+        backgroundColor: `white`
+    },
+    textTitle: {
+        color: `#D62839`
+    },
+    textSub: {
+        color: `#175676`
     }
 });
 

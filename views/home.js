@@ -58,7 +58,7 @@ const HomeView = ({
     };
 
     const handleCardPokemonClick = (id) => {
-        navigation.navigate(`Detail`, {
+        navigation.push(`Detail`, {
             id
         });
     };

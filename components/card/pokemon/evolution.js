@@ -23,9 +23,10 @@ const CardPokemonEvolution = ({
             data={evolutions}
             horizontal={true}
             renderItem={({ item }) => (
-                <View style={styles.itemContainer}>
-                    <CardPokemonImage avatarSize={75} imageUri={item.imageUri}/>
-                </View>
+                <CardPokemonImage
+                    marginHorizontal={10}
+                    backgroundColor={`white`}
+                    avatarSize={75} imageUri={item.imageUri}/>
             )}/>
     </Surface>
 );
@@ -34,9 +35,10 @@ const styles = StyleSheet.create({
     container: {
         display: `flex`,
         alignItems: `center`,
-        paddingVertical: 10,
+        paddingVertical: 20,
         elevation: 2,
-        borderRadius: 5
+        borderRadius: 5,
+        paddingHorizontal: 8
     },
     itemContainer: {
         marginHorizontal: 10

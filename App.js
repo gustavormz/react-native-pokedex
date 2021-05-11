@@ -7,6 +7,7 @@ import {
 	createStackNavigator
 } from '@react-navigation/stack';
 import {
+	DefaultTheme,
 	Provider as PaperProvider
 } from 'react-native-paper';
 import {
@@ -23,7 +24,15 @@ const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
 const TypeStackNavigator = () => (
-	<Stack.Navigator>
+	<Stack.Navigator
+		screenOptions={{
+			headerStyle: {
+				backgroundColor: `red`,
+			},
+			headerTitleStyle: {
+				color: `white`
+			}
+		}}>
 		<Stack.Screen
 			name={"Type"}
 			component={TypeView}/>
@@ -34,7 +43,16 @@ const TypeStackNavigator = () => (
 );
 
 const HomeStackNavigator = () => (
-	<Stack.Navigator>
+	<Stack.Navigator
+		screenOptions={{
+			headerStyle: {
+				backgroundColor: `red`,
+			},
+			headerTitleStyle: {
+				color: `white`
+			}
+		}}
+		headerMode={`screen`}>
 		<Stack.Screen
 			name={"Home"}
 			component={HomeView}/>
@@ -45,7 +63,9 @@ const HomeStackNavigator = () => (
 );
 
 const TabNavigator = () => (
-	<Tab.Navigator>
+	<Tab.Navigator
+		sceneAnimationEnabled={false}
+		shifting={true}>
 		<Stack.Screen
 			name={"HomeStackNavigator"}
 			component={HomeStackNavigator}
@@ -67,9 +87,43 @@ const TabNavigator = () => (
 	</Tab.Navigator>
 );
 
+const theme = {
+	...DefaultTheme,
+	colors: {
+		...DefaultTheme.colors,
+		primary: `#D62839`,
+		accent: `#BA324F`,
+		background: `white`,
+		surface: `#175676`,
+		text: `white`,
+		disabled: `gray`,
+		placeholder:`purple`,
+		backdrop:`black`,
+		onSurface: `#4BA3C3`,
+		notification: `pink`
+	}
+};
+
+const themeNavigator = {
+	...DefaultTheme,
+	colors: {
+		...DefaultTheme.colors,
+		primary: `#D62839`,
+		accent: `#BA324F`,
+		background: `white`,
+		surface: `white`,
+		text: `white`,
+		disabled: `gray`,
+		placeholder:`purple`,
+		backdrop:`black`,
+		onSurface: `#4BA3C3`,
+		notification: `pink`
+	}
+};
+
 const App = () => (
-	<PaperProvider>
-		<NavigationContainer>
+	<PaperProvider theme={theme}>
+		<NavigationContainer theme={themeNavigator}>
 			<Stack.Navigator
 				screenOptions={{
 					headerShown: false
