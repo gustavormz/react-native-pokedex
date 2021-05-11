@@ -6,6 +6,9 @@ import {
 import {
 	createStackNavigator
 } from '@react-navigation/stack';
+import {
+	Provider as PaperProvider
+} from 'react-native-paper';
 
 import SplashscreenView from './views/splashscreen';
 import HomeView from './views/home';
@@ -25,19 +28,21 @@ const HomeStackNavigator = () => (
 );
 
 const App = () => (
-	<NavigationContainer>
-		<Stack.Navigator
-			screenOptions={{
-				headerShown: false
-			}}>
-			<Stack.Screen
-				name={"Splashscreen"}
-				component={SplashscreenView}/>
-			<Stack.Screen
-				name={"HomeStack"}
-				component={HomeStackNavigator}/>
-		</Stack.Navigator>
-	</NavigationContainer>
+	<PaperProvider>
+		<NavigationContainer>
+			<Stack.Navigator
+				screenOptions={{
+					headerShown: false
+				}}>
+				<Stack.Screen
+					name={"Splashscreen"}
+					component={SplashscreenView}/>
+				<Stack.Screen
+					name={"HomeStack"}
+					component={HomeStackNavigator}/>
+			</Stack.Navigator>
+		</NavigationContainer>
+	</PaperProvider>
 );
 
 export default App;
