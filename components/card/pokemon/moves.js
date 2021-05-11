@@ -17,11 +17,12 @@ const CardPokemonMoves = ({
 }) => (
     <Surface style={styles.container}>
         <FlatList
+            testID={`flatlist-moves`}
             horizontal={true}
             data={moves}
             keyExtractor={moveKeyExtractor}
-            renderItem={({ item }) => (
-                <Card style={styles.itemContainer}>
+            renderItem={({ item }, index) => (
+                <Card testID={`move-row-${index}`} style={styles.itemContainer}>
                     <Card.Title
                         title={item.name}/>
                     <Card.Content>

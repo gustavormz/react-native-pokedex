@@ -12,23 +12,19 @@ import {
 
 import ProgressCircleStat from '../../progress/circle/stat';
 
-import CardPokemonImage from './image';
-import CardPokemonGeneral from './general';
-import CardPokemonEvolution from './evolution';
-
 const statKeyExtrator = (stat, index) => index;
 
 const CardPokemonStats = ({
-    stats,
-    numColumns
+    stats
 }) => (
     <Surface style={styles.container}>
         <FlatList
+            testID={`flatlist-stats`}
             horizontal={true}
             data={stats}
             keyExtractor={statKeyExtrator}
-            renderItem={({ item }) => (
-                <View style={styles.itemContainer}>
+            renderItem={({ item }, index) => (
+                <View testID={`stat-row-${index}`} style={styles.itemContainer}>
                     <View>
                         <ProgressCircleStat statValue={item.base_stat}/>
                     </View>
@@ -57,12 +53,7 @@ const styles = StyleSheet.create({
 });
 
 CardPokemonStats.propTypes = {
-    stats: PropTypes.array,
-    numColumns: PropTypes.number
-};
-
-CardPokemonStats.defaultProps = {
-    numColumns: 2
+    stats: PropTypes.array
 };
 
 export default CardPokemonStats;

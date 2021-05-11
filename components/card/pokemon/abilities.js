@@ -17,6 +17,7 @@ const CardPokemonAbilities = ({
 }) => (
     <Surface style={styles.container}>
         <FlatList
+            testID={`flatlist-abilities`}
             horizontal={true}
             data={abilities}
             keyExtractor={abilityKeyExtractor}

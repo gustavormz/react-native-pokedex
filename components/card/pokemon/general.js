@@ -18,7 +18,7 @@ const CardPokemonStats = ({
 }) => (
     <Surface style={styles.container}>
         <View style={styles.viewContainer}>
-            <View style={styles.view}>
+            <View testID={`height-view`} style={styles.view}>
                 <Subheading style={styles.text}>
                     Height
                 </Subheading>
@@ -26,7 +26,7 @@ const CardPokemonStats = ({
                     { height }
                 </Title>
             </View>
-            <View style={styles.view}>
+            <View testID={`weight-view`} style={styles.view}>
                 <Subheading style={styles.text}>
                     Weight
                 </Subheading>
@@ -36,7 +36,7 @@ const CardPokemonStats = ({
             </View>
         </View>
         <View style={styles.viewContainer}>
-            <View style={styles.view}>
+            <View testID={`xp-view`} style={styles.view}>
                 <Subheading style={styles.text}>
                     XP Base
                 </Subheading>
@@ -44,7 +44,7 @@ const CardPokemonStats = ({
                     { base_experience }
                 </Title>
             </View>
-            <View style={styles.view}>
+            <View testID={`ability-view`} style={styles.view}>
                 <Subheading style={styles.text}>
                     Main Ability
                 </Subheading>
