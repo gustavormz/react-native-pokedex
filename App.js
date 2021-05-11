@@ -17,9 +17,21 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import SplashscreenView from './views/splashscreen';
 import HomeView from './views/home';
 import DetailView from './views/detail';
+import TypeView from './views/type';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
+
+const TypeStackNavigator = () => (
+	<Stack.Navigator>
+		<Stack.Screen
+			name={"Type"}
+			component={TypeView}/>
+		<Stack.Screen
+			name={`Detail`}
+			component={DetailView}/>
+	</Stack.Navigator>
+);
 
 const HomeStackNavigator = () => (
 	<Stack.Navigator>
@@ -41,6 +53,15 @@ const TabNavigator = () => (
 				tabBarLabel: 'Home',
 				tabBarIcon: ({ color }) => (
 				  <MaterialCommunityIcons name="home" color={color} size={26} />
+				)
+			}}/>
+		<Stack.Screen
+			name={"TypeStackNavigator"}
+			component={TypeStackNavigator}
+			options={{
+				tabBarLabel: 'Types',
+				tabBarIcon: ({ color }) => (
+				  <MaterialCommunityIcons name="card-search" color={color} size={26} />
 				)
 			}}/>
 	</Tab.Navigator>
